@@ -1,0 +1,44 @@
+pipeline{
+    agent any
+    stages{
+        stage("Clean Up"){
+            steps {
+                deleteDir()
+            }
+        }
+        stage("Clone Repo"){
+            steps {
+                sh "git clone https://github.com/panwarsakshi241/Lambda-Terraform.git"
+            }
+        }
+        stage("Build"){
+            steps {
+                dir("Terraform Initialization") {
+                    cd ""
+                    sh "terraform init"
+                }
+            }
+        }
+        stage("Plan"){
+            steps {
+                dir("Terraform Plan") {
+                    sh "terraform plan"
+                    echo "Plan  Completed!"
+                }
+            }
+        }
+        stage("Apply"){
+            steps{
+                dir("Terraform Apply") {
+                    sh "terraform apply"
+                    echo "Apply Completed!"
+                }
+            }
+        }
+        stage("Delivery"){
+            steps{
+                echo "Delivery Successful!"
+            }
+        }
+    }
+}
