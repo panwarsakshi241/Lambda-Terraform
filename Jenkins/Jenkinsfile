@@ -13,15 +13,14 @@ pipeline{
         }
         stage("Build"){
             steps {
-                dir("Terraform Initialization") {
-                    cd ""
+                dir("Lambda-Terraform"){
                     sh "terraform init"
                 }
             }
         }
         stage("Plan"){
             steps {
-                dir("Terraform Plan") {
+                dir("Lambda-Terraform"){
                     sh "terraform plan"
                     echo "Plan  Completed!"
                 }
@@ -29,7 +28,7 @@ pipeline{
         }
         stage("Apply"){
             steps{
-                dir("Terraform Apply") {
+                dir("Lambda-Terraform"){
                     sh "terraform apply"
                     echo "Apply Completed!"
                 }
