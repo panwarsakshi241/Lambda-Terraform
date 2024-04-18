@@ -1,7 +1,8 @@
 import json
 
 def lambda_handler(event, context):
-   return {
-        'statusCode': 200,
-        'body': json.dumps('Hello from Lambda!')
-    }
+    print("This is the test terraform lambda function!")
+    return {
+            'statusCode': 200,
+            'body': json.dumps('Hello from Lambda!')
+        }
