@@ -1,0 +1,22 @@
+pipeline{
+    agent any
+
+    stages{
+        stage("DEMO"){
+            steps{
+                echo "This is the demo!!!"
+            }
+        }
+        stage("Deploy"){
+            steps{
+                echo "Lets Deploy!!!"
+            }
+        }
+        stage("Remote Deploy"){
+            steps{
+                build 'EnvironmentPipeline'
+            }
+        }
+    }
+
+}
