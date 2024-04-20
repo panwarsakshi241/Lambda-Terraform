@@ -1,0 +1,32 @@
+pipeline{
+    agent any
+
+    environment{
+        def myString = "This is how we declare variables."
+    }
+
+    parameters{
+        booleanParam(defaultValue: false, description: "Enable Deployment?", name: "enableDeployment")
+    }
+
+    stages{
+        stage("Deploy"){
+            steps{
+                script{
+                    if(params.enableDeployment == True){
+                        myFunc(myString)
+                    }
+                    else{
+                        echo "Deployment is not enabled."
+                        currentBuild.result = "FAILURE"
+                        return
+                    }
+                }
+            }
+        }
+    }  
+}
+
+def myFunc(String myString){
+    echo "This is myString: ${myString}"
+}

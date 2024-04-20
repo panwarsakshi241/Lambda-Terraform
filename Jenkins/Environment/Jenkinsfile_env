@@ -1,0 +1,11 @@
+pipeline{
+    agent any
+
+    stages{
+        stage("Environment Variable"){
+            steps{
+                echo "BUILD NUMBER:  ${env.BUILD_NUMBER}"
+            }
+        }
+    }
+}

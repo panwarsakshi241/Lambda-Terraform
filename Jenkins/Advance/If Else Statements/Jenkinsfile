@@ -1,0 +1,23 @@
+pipeline{
+    agent any
+
+    parameters{
+        booleanParam(defaultValue: false, description: "Enable Deploy?", name: "enableDeployment")
+    }
+
+    stages{
+        stage("Deploy"){
+            steps{
+                script{
+                    if(params.enableDeployment == false){
+                        currentBuild.result = "FAILURE"
+                        return
+                    }
+                    else{
+                        echo "Deployment is enabled?? ${enableDeployment}"
+                    }
+                }
+            }
+        }
+    }
+}

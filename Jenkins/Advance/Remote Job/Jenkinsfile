@@ -1,0 +1,26 @@
+pipeline{
+    agent any
+
+    parameters{
+        booleanParam(defaultValue: false, description: "Enable Deployment??", name: "enableDeployment")
+    }
+
+    stages{
+        stage("DEMO"){
+            steps{
+                echo "This is the demo!!!"
+            }
+        }
+        stage("Deploy"){
+            steps{
+                echo "Lets Deploy!!!"
+            }
+        }
+        stage("Remote Deploy"){
+            steps{
+                build job: 'Function pipeline', parameters:[[$class: 'BooleanParameterValue', name: 'enableDeployment', value: "${enableDeployment}"]]
+            }
+        }
+    }
+
+}
